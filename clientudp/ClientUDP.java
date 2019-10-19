@@ -10,7 +10,7 @@ import java.net.SocketException;
 
 /**
  *
- * @author pc15
+ * @author Gabriele Farinella
  */
 public class ClientUDP {
 
@@ -18,7 +18,6 @@ public class ClientUDP {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SocketException, IOException {
-        // TODO code application logic here
         String IP_address;
         int UDP_port;
         String request,answer;

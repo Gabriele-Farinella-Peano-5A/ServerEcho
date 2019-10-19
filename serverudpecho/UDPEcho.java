@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author pc15
+ * @author Gabriele Farinella
  */
-public class UDPEcho {
+public class UDPEcho implements Runnable {
 
     private DatagramSocket socket;
 
@@ -27,12 +27,10 @@ public class UDPEcho {
     public void run() {
         DatagramPacket answer;
         byte[] buffer = new byte[8192];
-        // creo un un datagramma UDP a partire da buffer
         DatagramPacket request = new DatagramPacket(buffer, buffer.length);
-        for (;;) {
+        while (!Thread.interrupted()){
             try {
                 socket.receive(request);
-                // prendo i dati ricevuti e costruisco la risposta
                 answer = new DatagramPacket(request.getData(), request.getLength(), request.getAddress(), request.getPort());
                 socket.send(answer);
             } catch (IOException ex) {

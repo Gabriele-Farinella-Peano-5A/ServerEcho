@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
 
 /**
  *
- * @author pc15
+ * @author Gabriele Farinella
  */
 public class UDPClientSocket {
 
@@ -34,23 +34,17 @@ public class UDPClientSocket {
         byte[] buffer;
         DatagramPacket datagram;
         String answer;
-        // indirizzo iP del destinatario del nostro pacchetto
         InetAddress address = InetAddress.getByName(host);
 
-        //verifico che il socket non sia chiuso
         if (socket.isClosed()) {
             throw new IOException();
         }
-        //Trasformo in array di byte la stringa che voglio inviare
         buffer = request.getBytes("UTF-8");
 
-        // Costruisco il datagram di richiesta
         datagram = new DatagramPacket(buffer, buffer.length, address, port);
 
-        // spedisco il datagram
         socket.send(datagram);
 
-        // Attesa della ricecione del datagram
         socket.receive(datagram);
 
         if (datagram.getAddress().equals(address) && datagram.getPort() == port) {
